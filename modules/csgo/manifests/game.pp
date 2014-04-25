@@ -14,4 +14,17 @@ class csgo::game {
     require => File["${steamdir}/csgo_ds"],
     timeout => 1800,
   }
+
+  file { "${steamdir}/.steam":
+    ensure => directory,
+    owner => "steam",
+    group => "steam",
+    mode => "644",
+  }
+
+  file { "${steamdir}/.steam/sdk32":
+    ensure => link,
+    target => "${steamdir}/csgo_ds/bin",
+    require => File["${steamdir}/.steam"],
+  }
 }
