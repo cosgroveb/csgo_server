@@ -1,1 +1,12 @@
 steam::homedir: "/opt/steam"
+
+workshop_collections:
+  - name: aim
+    id: 128236440
+    starting_map: 125766698
+  - name: se_maps
+    id: 125499818
+    starting_map: 125488374
+  - name: esl
+    id: 127556162
+    starting_map: 127178918
