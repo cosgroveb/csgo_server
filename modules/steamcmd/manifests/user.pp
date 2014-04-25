@@ -9,5 +9,6 @@ class steamcmd::user {
     managehome => true,
     gid        => "steam",
     require    => Group["steam"],
+    shell      => "/bin/bash",
   }
 }
