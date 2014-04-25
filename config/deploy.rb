@@ -15,6 +15,7 @@ set :user, ssh_options[:user]
 
 SERVERS = %w[
   csgo01
+  games01.chi
 ]
 
 SERVERS.each do |server|

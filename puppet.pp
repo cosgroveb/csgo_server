@@ -1,6 +1,6 @@
 import "modules/*/*/*.pp"
 
-node csgo01 {
+node /csgo01|games01.chi/ {
   $packages = [
     "curl",
     "lsof",
