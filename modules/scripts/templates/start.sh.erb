@@ -1,0 +1,33 @@
+#!/bin/bash
+
+source  ~/.steam_api_key
+
+RUN_COMMAND=<%= @steam_home_dir %>/csgo_ds/srcds_run
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: start <game_mode>"
+  exit 1
+fi
+
+case "$1" in
+  arms_race)
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 0 +mapgroup mg_armsrace +map ar_shoots
+    ;;
+  competitive)
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 0 +game_mode 1 +mapgroup mg_bomb +map de_dust2
+    ;;
+  classic)
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust
+    ;;
+  demolition)
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 1 +mapgroup mg_demolition +map de_lake
+    ;;
+  deathmatch)
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 2 +mapgroup mg_allclassic +map de_dust
+    ;;
+  <% @workshop_collections.each do |collection| -%>
+<%= collection['name'] %>)
+    ${RUN_COMMAND} -game csgo -console -usercon -authkey ${STEAM_API_KEY} +game_type 0 +game_mode 1 +host_workshop_collection <%= collection['id'] %> +workshop_start_map <%= collection['starting_map'] %>
+    ;;
+  <% end -%>
+esac
