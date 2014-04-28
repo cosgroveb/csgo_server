@@ -1,4 +1,5 @@
 class opt {
+
   file { "/opt":
     ensure => directory,
     owner  => root,
