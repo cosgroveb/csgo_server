@@ -1,7 +1,8 @@
-class csgo::game {
-  $steamdir = hiera("steam::homedir")
+class csgo::game (
+  $steam_home_dir,
+) {
 
-  file { "${steamdir}/csgo_ds":
+  file { "${steam_home_dir}/csgo_ds":
     ensure  => directory,
     owner   => "steam",
     group   => "steam",
@@ -9,22 +10,22 @@ class csgo::game {
   }
 
   exec { "install_csgo":
-    command => "${steamdir}/steamcmd/steamcmd.sh +login anonymous +force_install_dir ${steamdir}/csgo_ds +app_update 740 +quit",
+    command => "${steam_home_dir}/steamcmd/steamcmd.sh +login anonymous +force_install_dir ${steam_home_dir}/csgo_ds +app_update 740 +quit",
     user    => "steam",
-    require => File["${steamdir}/csgo_ds"],
+    require => File["${steam_home_dir}/csgo_ds"],
     timeout => 1800,
   }
 
-  file { "${steamdir}/.steam":
+  file { "${steam_home_dir}/.steam":
     ensure => directory,
     owner => "steam",
     group => "steam",
     mode => "644",
   }
 
-  file { "${steamdir}/.steam/sdk32":
+  file { "${steam_home_dir}/.steam/sdk32":
     ensure => link,
-    target => "${steamdir}/csgo_ds/bin",
-    require => File["${steamdir}/.steam"],
+    target => "${steam_home_dir}/csgo_ds/bin",
+    require => File["${steam_home_dir}/.steam"],
   }
 }
