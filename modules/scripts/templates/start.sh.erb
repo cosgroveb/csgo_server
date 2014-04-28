@@ -27,7 +27,7 @@ case "$1" in
     ;;
   <% @workshop_collections.each do |collection| -%>
 <%= collection['name'] %>)
-    ${RUN_COMMAND} -game csgo -console -usercon -authkey ${STEAM_API_KEY} +game_type 0 +game_mode 1 +host_workshop_collection <%= collection['id'] %> +workshop_start_map <%= collection['starting_map'] %>
+    ${RUN_COMMAND} -game csgo -console -usercon -authkey ${STEAM_API_KEY} +game_type 0 +game_mode 1 +host_workshop_collection <%= collection['id'] %> +workshop_start_map <%= collection['starting_map'] %> -sv_pure 0
     ;;
   <% end -%>
 esac
