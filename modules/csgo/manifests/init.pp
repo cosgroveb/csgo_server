@@ -16,6 +16,9 @@ class csgo (
     steam_home_dir => $steam_home_dir,
     workshop_collections => $workshop_collections,
   }
+  class { "csgo_dm":
+    steam_home_dir => $steam_home_dir,
+  }
 
-  Class["steamcmd"] -> Class["csgo::game"] -> Class["csgo::files"] -> Class["scripts"]
+  Class["steamcmd"] -> Class["csgo::game"] -> Class["csgo::files"] -> Class["scripts"] -> Class["csgo_dm"]
 }
