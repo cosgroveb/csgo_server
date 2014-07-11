@@ -13,3 +13,5 @@ workshop_collections:
   - name: breakout
     id: 279746245
     starting_map: 170448429
+
+csgo::arguments::maxplayers_override: 20

@@ -11,23 +11,23 @@ fi
 
 case "$1" in
   arms_race)
-    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 0 +mapgroup mg_armsrace +map ar_shoots
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 0 +mapgroup mg_armsrace +map ar_shoots -maxplayers_override <%= @maxplayers_override %>
     ;;
   competitive)
-    ${RUN_COMMAND} -game csgo -console -usercon +game_type 0 +game_mode 1 +mapgroup mg_bomb +map de_dust2
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 0 +game_mode 1 +mapgroup mg_active +map de_dust2 -maxplayers_override <%= @maxplayers_override %>
     ;;
   classic)
-    ${RUN_COMMAND} -game csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust -maxplayers_override <%= @maxplayers_override %>
     ;;
   demolition)
-    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 1 +mapgroup mg_demolition +map de_lake
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 1 +mapgroup mg_demolition +map de_lake -maxplayers_override <%= @maxplayers_override %>
     ;;
   deathmatch)
-    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 2 +mapgroup mg_allclassic +map de_dust
+    ${RUN_COMMAND} -game csgo -console -usercon +game_type 1 +game_mode 2 +mapgroup mg_allclassic +map de_dust -maxplayers_override <%= @maxplayers_override %>
     ;;
   <% @workshop_collections.each do |collection| -%>
 <%= collection['name'] %>)
-    ${RUN_COMMAND} -game csgo -console -usercon -authkey ${STEAM_API_KEY} +game_type 0 +game_mode 1 +host_workshop_collection <%= collection['id'] %> +workshop_start_map <%= collection['starting_map'] %> -sv_pure 0
+    ${RUN_COMMAND} -game csgo -console -usercon -authkey ${STEAM_API_KEY} +game_type 0 +game_mode 1 +host_workshop_collection <%= collection['id'] %> +workshop_start_map <%= collection['starting_map'] %> -sv_pure 0 -maxplayers_override <%= @maxplayers_override %>
     ;;
   <% end -%>
 esac
