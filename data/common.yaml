@@ -10,3 +10,6 @@ workshop_collections:
   - name: esl
     id: 127556162
     starting_map: 127178918
+  - name: breakout
+    id: 279746245
+    starting_map: 170448429
